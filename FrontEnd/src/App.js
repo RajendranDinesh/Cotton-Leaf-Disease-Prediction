@@ -42,6 +42,8 @@ function App() {
 
   const [showLeafDialog, setShowLeafDialog] = useState();
 
+  const PORT = process.env.REACT_APP_API_URL;
+
   const openModal = () => {
     setIsOpen(true);
   };
@@ -66,7 +68,8 @@ function App() {
       formData.append('image', imageFiles[0]);
       openModal();
       try{
-        await axios.post("http://127.0.0.1:5000/classify", formData, {
+        const url_classify = `${PORT}/classify`;
+        await axios.post(url_classify, formData, {
           headers:{
             'Content-Type' : 'multipart/form-data',
           },
@@ -77,7 +80,8 @@ function App() {
             setIsCottonLeaf(true);
             setIsPredicting(true);
             try {
-              await axios.post("http://127.0.0.1:5000/predict", formData, {
+              const url_predict = `${PORT}/predict`;
+              await axios.post(url_predict, formData, {
                 headers:{
                   'Content-Type' : 'multipart/form-data',
                 },

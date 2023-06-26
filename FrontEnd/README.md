@@ -1,4 +1,4 @@
-Configure REACT_APP_API_URL in .env at the root directory.
+Configure REACT_APP_API_URL in `.env` at the root directory.
 
 e.g:
 `REACT_APP_API_URL = http://127.0.0.1:5000`

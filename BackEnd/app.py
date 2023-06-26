@@ -11,7 +11,7 @@ CORS(app)  # Enable CORS for all routes
 temp_dir = r".\temp" # Path to a temporary directory
 
 # Load your trained model
-model = tf.keras.models.load_model(r'.\mobile_net_v3.h5') # Path to your trained model
+model = tf.keras.models.load_model(r'BackEnd\mobile_net_v3.h5') # Path to your trained model
 
 # Define a dictionary to map class indices to labels
 class_labels = {
@@ -53,7 +53,7 @@ def predict():
 
 
 # Load the leaf classification model
-leaf_model = tf.keras.models.load_model(r'\mobile_net_classification.h5') # Path to your leaf classification model
+leaf_model = tf.keras.models.load_model(r'BackEnd\mobile_net_classification.h5') # Path to your leaf classification model
 
 # Define class labels
 class_labels_classify = {
@@ -85,3 +85,6 @@ def classify_leaf():
 
     # Return the response as JSON
     return jsonify(response)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000, debug=True)

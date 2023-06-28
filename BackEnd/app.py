@@ -10,8 +10,13 @@ app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 temp_dir = r".\temp" # Path to a temporary directory
 
+DISEASE_MODEL = r'mobile_net_v5.h5' # Path to your trained model
+CLASSIFICATION_MODEL = r'mobile_net_classification_v3.h5' # Path to your leaf classification model
+
 # Load your trained model
-model = tf.keras.models.load_model(r'mobile_net_v3.h5') # Path to your trained model
+model = tf.keras.models.load_model(DISEASE_MODEL) # Path to your trained model
+# Load the leaf classification model
+leaf_model = tf.keras.models.load_model(CLASSIFICATION_MODEL) # Path to your leaf classification model
 
 # Define a dictionary to map class indices to labels
 class_labels = {
@@ -50,10 +55,6 @@ def predict():
     # Return the response as JSON
     return jsonify(response)
 
-
-
-# Load the leaf classification model
-leaf_model = tf.keras.models.load_model(r'mobile_net_classification.h5') # Path to your leaf classification model
 
 # Define class labels
 class_labels_classify = {
